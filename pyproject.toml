@@ -9,6 +9,8 @@ packages = [{include = "voting_reco_matching"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 camelot-py = "^0.11.0"
+opencv-python = "^4.7.0.72"
+ghostscript = "^0.7"
 
 
 [build-system]
