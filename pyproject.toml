@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "voting-reco-matching"
+version = "0.1.0"
+description = ""
+authors = ["olivier <olibitter@gmail.com>"]
+readme = "README.md"
+packages = [{include = "voting_reco_matching"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+camelot-py = "^0.11.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
