@@ -22,27 +22,61 @@ def extract_data(url):
     print(votings_df.head())
     return votings_df
 
-def get_url(business_reference, vote=51):
-    BASE_ROUTE = f"https://www.parlament.ch/poly/Abstimmung/{vote}/out"
-    return f"{BASE_ROUTE}/vote_{vote}_{business_reference}.pdf"
+def get_url(business_reference, remote, vote=51):
+    REMOTE_ROUTE = f"https://www.parlament.ch/poly/Abstimmung/{vote}/out"
+    LOCAL_ROUTE = "pdfs"
+    LOCATION = REMOTE_ROUTE if remote else LOCAL_ROUTE
+    return f"{LOCATION}/vote_{vote}_{business_reference}.pdf"
 
 
-def get_matches(entry):
-    business, recommendation = itemgetter('business', 'recommendation')(entry)
-    voting_df = extract_data(get_url(business))
-    return voting_df.vote == recommendation
+def get_matches(business, remote=True):
+    voting_df = extract_data(get_url(business, remote))
+    return voting_df.vote
 
 
 with open("recommendations.json") as f:
-    recommendations = load(f)
+    business_recommendations = load(f)
+    businesses = map(lambda br: br["business"], business_recommendations)
+    recommendations = list(map(lambda br: br["recommendation"], business_recommendations))
+    
 
     result_df = pd.DataFrame(data={
-        entry["business"]: get_matches(entry) for entry in recommendations
+        business: get_matches(business, False) for business in businesses
     })
-    result_df["followed_recommendation"] = result_df.sum(axis=1)
-    print(result_df.head())
+
+    n_votes = len(recommendations)
 
 
+    n_yes = (result_df == "+").sum(axis=1)
+    n_no = (result_df == "-").sum(axis=1)
+    n_abstention = (result_df == "=").sum(axis=1)
+    n_attendant = n_yes + n_no + n_abstention
+    n_followed_recommendation = (result_df == recommendations).sum(axis=1)
+    followed_recommendation_rate = n_followed_recommendation / (n_yes + n_no)
+    participation_rate = (n_yes + n_no) / n_votes
+
+
+    result_df = result_df.assign(
+        n_yes=n_yes,
+        n_no=n_no,
+        n_abstention=n_abstention,
+        n_attendant=n_abstention ,
+        n_followed_recommendation=n_followed_recommendation,
+        followed_recommendation_rate=followed_recommendation_rate,
+        participation_rate=participation_rate
+    )
+
+    print(result_df)
+    # print(pd.concat([
+    #     result_df,
+    #     n_yes,
+    #     n_no,
+    #     n_abstention,
+    #     n_attendant,
+    #     n_followed_recommendation,
+    #     followed_recommendation_rate,
+    #     participation_rate
+    # ], axis=1))
 
 
 
