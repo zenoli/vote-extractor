@@ -1,2 +1,4 @@
 pdfs/
 out/
+**/__pycache__/
+
