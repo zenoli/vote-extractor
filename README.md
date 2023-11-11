@@ -104,3 +104,40 @@ options:
                         Name of the directory where the generated PDFs are stored. Defaults to `./out.`
 ```
 
+## Usage
+
+To see an overview of what you can do, type:
+
+```
+extract-votes --help
+```
+
+To extract the votes from the following link:
+
+https://www.parlament.ch/poly/AbstimmungSR/51/out/Abstimmung_51_6126.pdf
+
+...and extract to both an excel file and a csv file named "my-test" inside the folder "my-output-folder", use the following command:
+
+```shell
+extract-votes --csv --excel --directory="my-output-folder" --name="my-test" https://www.parlament.ch/poly/AbstimmungSR/51/out/Abstimmung_51_6126.pdf
+```
+
+After that, you will see the following files:
+
+```
+my-output-folder
+├── my-test.csv
+└── my-test.xlsx
+```
+
+If you omit the `--directory` and `--name` arguments, the result would be different:
+
+```shell
+extract-votes --csv --excel  https://www.parlament.ch/poly/AbstimmungSR/51/out/Abstimmung_51_6126.pdf
+```
+The resulting files would be:
+```
+out
+├── Abstimmung_51_6126.csv
+└── Abstimmung_51_6126.xlsx
+```
