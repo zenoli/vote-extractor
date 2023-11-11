@@ -6,13 +6,25 @@ from vote_extractor.extraction import extract_data
 
 def main():
     args = get_args()
-    df = extract_data(args.pdf_url).sort_values("firstname").head()
+
+    print("Downloading pdf and extracting data...")
+    df = extract_data(args.pdf_url)
     name = args.name or parse_pdf_name(args)
 
+    if not os.path.isdir(args.directory):
+        print(f"Creating directory {args.directory}")
+        os.makedirs(args.directory)
+
     if args.csv:
-        df.to_csv(os.path.join("out", f"{name}.csv"))
+        csv_file = os.path.join(args.directory, f"{name}.csv")
+        print(f"Storing csv file: {csv_file}")
+        df.to_csv(csv_file)
+        print("DONE")
     if args.excel:
-        df.to_csv(os.path.join("out", f"{name}.xlsx"))
+        excel_file = os.path.join(args.directory, f"{name}.xlsx")
+        print(f"Storing excel_file file: {excel_file}")
+        df.to_excel(excel_file)
+        print("DONE")
 
 
 if __name__ == "__main__":

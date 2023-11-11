@@ -25,4 +25,10 @@ def get_args():
         "--name",
         help="name of the generated file(s). Defaults to the input PDF name",
     )
+    parser.add_argument(
+        "-d",
+        "--directory",
+        help="name of the directory where the generated PDFs are stored. Defaults to ./out",
+        default="out"
+    )
     return parser.parse_args()
