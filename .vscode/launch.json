@@ -1,0 +1,50 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "vote_extractor",
+            "type": "python",
+            "request": "launch",
+            "module": "vote_extractor",
+            "justMyCode": true,
+            "args": [
+                "https://www.parlament.ch/poly/AbstimmungSR/51/out/Abstimmung_51_6126.pdf"
+            ]
+        },
+        {
+            "name": "vote_extractor_csv",
+            "type": "python",
+            "request": "launch",
+            "module": "vote_extractor",
+            "justMyCode": true,
+            "args": [
+                "-c",
+                "https://www.parlament.ch/poly/AbstimmungSR/51/out/Abstimmung_51_6126.pdf"
+            ]
+        },
+        {
+            "name": "vote_extractor_excel",
+            "type": "python",
+            "request": "launch",
+            "module": "vote_extractor",
+            "justMyCode": true,
+            "args": [
+                "-x",
+                "https://www.parlament.ch/poly/AbstimmungSR/51/out/Abstimmung_51_6126.pdf"
+            ]
+        },
+        {
+            "name": "vote_extractor_custom_name",
+            "type": "python",
+            "request": "launch",
+            "module": "vote_extractor",
+            "justMyCode": true,
+            "args": [
+                "-n",
+                "test-name",
+                "-x",
+                "https://www.parlament.ch/poly/AbstimmungSR/51/out/Abstimmung_51_6126.pdf"
+            ]
+        }
+    ]
+}
