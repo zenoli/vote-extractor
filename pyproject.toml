@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "voting-reco-matching"
+name = "vote-extractor"
 version = "0.1.0"
 description = ""
 authors = ["olivier <olibitter@gmail.com>"]
