@@ -18,12 +18,12 @@ def main():
     if args.csv:
         csv_file = os.path.join(args.directory, f"{name}.csv")
         print(f"Storing csv file: {csv_file}")
-        df.to_csv(csv_file)
+        df.to_csv(csv_file, index=False)
         print("DONE")
     if args.excel:
         excel_file = os.path.join(args.directory, f"{name}.xlsx")
         print(f"Storing excel_file file: {excel_file}")
-        df.to_excel(excel_file)
+        df.to_excel(excel_file, index=False)
         print("DONE")
 
 
