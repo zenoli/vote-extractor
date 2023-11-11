@@ -1,3 +1,5 @@
+import argparse
+
 import camelot
 import pandas as pd
 import requests
@@ -27,6 +29,22 @@ def get_matches(business, remote=True):
 
 
 if __name__ == "__main__":
-    extract_data(
-        "https://www.parlament.ch/poly/AbstimmungSR/51/out/Abstimmung_51_6126.pdf"
-    ).sort_values("firstname").to_csv("out/out.csv")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("pdf_url", help="url to the pdf to extract votes from")
+    parser.add_argument(
+        "-x",
+        "--excel",
+        help="store extracted votes as excel file",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-c", "--csv", help="store extracted votes CSV file", action="store_true"
+    )
+    parser.add_argument(
+        "-n",
+        "--name",
+        help="name of the generated file(s). Defaults to the input PDF name",
+    )
+    args = parser.parse_args()
+    extract_data(args.pdf_url).sort_values("firstname").head()
+
