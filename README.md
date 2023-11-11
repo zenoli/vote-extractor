@@ -11,6 +11,7 @@ Make sure to have the following dependencies installed:
 
 - Python 3.10 or later
 - pip
+- pipx
 - Ghostscript (Windows)
 
 ## Window Setup (Tested on Windows 11)
@@ -19,7 +20,7 @@ Make sure to have the following dependencies installed:
 
 - Open the "Marketplace" and search for python. Install it.
   Alternatively, download and instal python [here](https://www.python.org/ftp/python/3.11.6/python-3.11.6-amd64.exe)
-- Open a terminal: `Start > Type "cmd" > start "command Prompt"`
+- Open a terminal: `Start > Type "cmd" > start "Command Prompt"`
 - Inside the terminal, type `python --version` and press "Enter".
   If you see something like this, python was succesfully installed:
 
@@ -48,7 +49,7 @@ Then type:
 python -m pipx ensurepath
 ```
 Again, confirm with enter and wait for completion.
-Open a new terminal (`Start > Type "cmd" > start "command Prompt"`) and type `pipx --version` to verify if the installation was succesful:
+Open a new terminal (`Start > Type "cmd" > start "Command Prompt"`) and type `pipx --version` to verify if the installation was succesful:
 
 ```
 \> pipx --version
