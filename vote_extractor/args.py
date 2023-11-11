@@ -1,4 +1,11 @@
 import argparse
+import os
+
+
+def parse_pdf_name(args):
+    pdf_filename = args.pdf_url.rsplit("/", 1)[-1]
+    name, _ = os.path.splitext(pdf_filename)
+    return name
 
 
 def get_args():
