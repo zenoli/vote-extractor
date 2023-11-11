@@ -1,6 +1,6 @@
 # Vote Extractor
 
-Simple python cli to extract voting results from PDfs published by the [swiss parliament](https://www.parlament.ch).
+Simple python cli to extract voting results from PDFs published by the [swiss parliament](https://www.parlament.ch).
 
 
 ## Installation
