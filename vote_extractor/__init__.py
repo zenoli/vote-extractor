@@ -1,8 +1,6 @@
-import argparse
-
 import camelot
 import pandas as pd
-import requests
+from vote_extractor.args import get_args
 
 
 def extract_data(url):
@@ -28,23 +26,6 @@ def get_matches(business, remote=True):
     return voting_df.vote
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("pdf_url", help="url to the pdf to extract votes from")
-    parser.add_argument(
-        "-x",
-        "--excel",
-        help="store extracted votes as excel file",
-        action="store_true",
-    )
-    parser.add_argument(
-        "-c", "--csv", help="store extracted votes CSV file", action="store_true"
-    )
-    parser.add_argument(
-        "-n",
-        "--name",
-        help="name of the generated file(s). Defaults to the input PDF name",
-    )
-    args = parser.parse_args()
+def main():
+    args = get_args()
     extract_data(args.pdf_url).sort_values("firstname").head()
-
