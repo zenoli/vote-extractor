@@ -10,7 +10,11 @@ def parse_pdf_name(args):
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("pdf_url", help="Url to the pdf to extract votes from.")
+    parser.add_argument()
+    parser.add_argument(
+        "pdf_url",
+        help="Url to the pdf to extract votes from."
+    )  # fmt: skip
     parser.add_argument(
         "-x",
         "--excel",
@@ -18,8 +22,11 @@ def get_args():
         action="store_true",
     )
     parser.add_argument(
-        "-c", "--csv", help="Store extracted votes CSV file.", action="store_true"
-    )
+        "-c",
+        "--csv",
+        help="Store extracted votes CSV file.",
+        action="store_true"
+    )  # fmt: skip
     parser.add_argument(
         "-n",
         "--name",
@@ -28,7 +35,10 @@ def get_args():
     parser.add_argument(
         "-d",
         "--directory",
-        help="Name of the directory where the generated PDFs are stored. Defaults to `./out.`",
-        default="out"
+        help="""
+            Name of the directory where the generated PDFs are stored.
+            Defaults to `./out.`
+        """,
+        default="out",
     )
     return parser.parse_args()
